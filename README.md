@@ -19,13 +19,19 @@ nettoieCaisse is an R package that implements custom data cleaning steps for the
 inspecteurDepense houses an R ML model that scores each entry to allocate to a spending category. The model training occurs once in a while -- when there has been enough model drift/accuracy starts falling. The model itself can be served two ways: as an API via plumber, or sourcing all objects directly within the cleaning pipeline. 
 
 ### integraFin
-integraFin is basically the orchestrator when I run the pipeline. It calls the various other projects/modules as necessary. Some basic scripts here as porcelain. Finally, (and importantly),integraFin writes to a long-lived sqlite database that has validated financial data that's been cleaned, and enriched.
+integraFin is basically the orchestrator when I run the pipeline. It calls the various other projects/modules as necessary. Also has some basic scripts here as porcelain. Finally, (and importantly),integraFin writes to a long-lived sqlite database that has validated financial data that's been cleaned, and enriched.
 
 ### eclairCitoyen
 eclairCitoyen is an R Shiny dashboard that reads from the financial database, and implements visuals that I find helpful.
 
-```mermaid
 
+---
+
+### Visually:
+
+... if it doesn't render, it's likely GitHub support for mermaid is not where it needs to be. [See here](https://www.mermaidchart.com/play#pako:eNqVklFr2zAUhf-Kaih0EDuL50Dqh7I27UofBoPtzS5Blm7sC8qVKslLSul_n-S4wdteWj_I9577SefI-CURWkJSJmma1uTRKyjZdX9gN7q3DtyMrdHrZyDHzmoaoK3Se9Fx69mvm5pqOj9nt7BFQo-aXE07LTeLqullC_4eCCzvD49HOa-QPLSWf0MapS9BcgaEh97egglGME6KisB7jbDm6E7qsgKhONoxVlBlU10E-43knjfcQeaeFHr49DiG-9k3wdF0IZobS7ZWwEMyt7kji6KL1cMxmdc2gGx4hnzTppg2eTx_ArI0vXobTLZMZSAZN51iXBNXzw7-dlz-z_1QnOgfbHHChlt-58YgtQF5g1maZcFaNuO3H4LETjZDOTEPVlzBAW0YSL0npbl0kRHud5BwZ7T1k3vUFAZfXxju2pLVSee9ceV8LiSlKMJPkBpqs63iPnaZ0Lv5cpHPV3lxXC5XRRaIOpkxo108oYl1V7Ll5xnbx9frJNSHjYpFvhqWvHiPUfL6B38lA74).
+
+```mermaid
 ---
 title: Aux Bourses, Citoyens !
 ---
@@ -40,7 +46,7 @@ mod_5[eclairCitoyen]
 db[(fin_database.sqlite)]
 
 %% Subgraphs
-subgraph Cleaners, Enrichers, Integrators
+subgraph Cleaners_Enrichers_Integrators
       mod_3
       mod_4
       mod_2
@@ -63,10 +69,16 @@ Planners -..-> db
 mod_2 --> db
 db --> Analysers
 
-salem --> csv --> mod_2
+salexir --downloads--> csv --import--> mod_2
 
-salem@{ icon: "fa:user", pos: "b", h: 1}
+csv@{ img: "https://cdn-icons-png.flaticon.com/512/8242/8242984.png", pos: "b", h: 50, w: 50}
 
-csv@{ icon: "fa:file"}
+salexir@{ img: "https://cdn-icons-png.flaticon.com/512/4128/4128244.png", pos: "b", h: 50, w: 50}
 
 ```
+
+Viz attribution: 
+ + [CSV](https://www.flaticon.com/free-icons/csv)
+ + [Person](https://www.flaticon.com/free-icons/person)
+
+ 
