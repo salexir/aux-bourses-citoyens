@@ -3,7 +3,6 @@ eclairCitoyen/
 inspecteurDepense/
 integraFin/
 nettoieCaisse/
-README.md
 run_budgetGeneraux.command
 run_eclairCitoyen.command
 .DS_Store
